@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Entreprise extends Model
 {
     use HasFactory;
+    public function taches()
+    {
+        return $this->hasMany(Tache::class);
+    }
 }

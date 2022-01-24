@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/message',[App\Http\Controllers\MessageController::class, 'index'])->name('message');
+Route::get('/tache',[App\Http\Controllers\TacheController::class, 'create'])->name('tache');
+Route::post('/tache',[App\Http\Controllers\TacheController::class, 'store']);
+Route::get('/alltodos', [App\Http\Controllers\TacheController::class, 'index'])->name('alltodos');
+Route::get('/show/{id}', [App\Http\Controllers\TacheController::class, 'shows']);
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
