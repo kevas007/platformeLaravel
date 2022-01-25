@@ -16,11 +16,19 @@ class MessageFactory extends Factory
     public function definition()
     {
         $entreprise = Entreprise::inRandomOrder()->first();
-         $users= User::inRandomOrder()->first();
+        $users= User::first();
+
+        $rand = rand(0,200);
+        if ($rand > 100) {
+            $currentUser = $users->id;
+        }else {
+            $currentUser = $entreprise->users_id;
+        }
+
         return [
-            'entreprises_id' => $entreprise->id,
+            'entreprise_id' => $entreprise->id,
             'message' => $this->faker->paragraph,
-            'users_id' =>1,
+            'user_id' => $currentUser,
         ];
     }
 }

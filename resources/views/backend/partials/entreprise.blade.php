@@ -30,8 +30,13 @@
 
                     </p>
                    <div >
+<div class="d-flex justify-content-between">
 
-                    <a href="/show/{{ $item->id }}" class="btn btn-warning">More...</a>
+    <a href="/show/{{ $item->id }}" class="btn btn-warning">More...</a>
+    <a href="/message/show/{{ $item->id  }}" class="btn btn-secondary">
+    Message
+    </a>
+</div>
                    </div>
                 </div>
             </div>

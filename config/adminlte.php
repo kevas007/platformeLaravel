@@ -248,13 +248,13 @@ return [
             'url'  => 'home',
             'icon' => 'fas fa-home',
         ],
-        [
-            'text'        => 'Message',
-            'url'         => 'message',
-            'icon'        => 'far fa-envelope',
-            // 'label'       => 4,
-            // 'label_color' => 'success',
-        ],
+        // [
+        //     'text'        => 'Message',
+        //     'url'         => 'message',
+        //     'icon'        => 'far fa-envelope',
+        //     // 'label'       => 4,
+        //     // 'label_color' => 'success',
+        // ],
         [
             'text' => 'AllTodos',
             'url'  => 'alltodos',

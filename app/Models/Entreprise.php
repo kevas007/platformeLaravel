@@ -12,4 +12,8 @@ class Entreprise extends Model
     {
         return $this->hasMany(Tache::class);
     }
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 }

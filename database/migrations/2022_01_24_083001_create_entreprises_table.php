@@ -19,7 +19,7 @@ class CreateEntreprisesTable extends Migration
             $table->bigInteger('numero_de_TVA');
             $table->string('nom_de_entreprise');
             $table->string('activite_d_entreprise');
-            $table->string('email');
+            // $table->string('email');
             $table->string('adresse');
             $table->string('ville');
             $table->string('pays');

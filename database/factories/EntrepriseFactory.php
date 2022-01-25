@@ -19,7 +19,7 @@ class EntrepriseFactory extends Factory
             'numero_de_TVA' => $this->faker->numberBetween(100000000,999999999),
             'nom_de_entreprise' => $this->faker->company,
             'activite_d_entreprise' => $this->faker->jobTitle,
-            'email' => $this->faker->email,
+            // 'email' => $this->faker->email,
             'adresse' => $this->faker->address(),
             'ville' => $this->faker->city,
             'pays' => $this->faker->country,

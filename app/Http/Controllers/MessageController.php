@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
+use App\Models\Entreprise;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
@@ -15,8 +18,14 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::all();
-        return view('backend.partials.messages', compact('messages'));
+        //     $entreprises  = DB::table('entreprises')
+        //     ->join('messages', 'entreprises.id', '=', 'messages.entreprise_id')
+        //     ->orderBy('messages.created_at', 'asc')
+        //     ->get();
+
+
+        // // dd($entreprises);
+        // return view('backend.partials.messages', compact('entreprises'));
     }
 
     /**
@@ -35,13 +44,15 @@ class MessageController extends Controller
      * @param  \App\Http\Requests\StoreMessageRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMessageRequest $request)
+    public function store(StoreMessageRequest $request, $id)
     {
         $store = new Message;
-        $entreprises_id = $request->entreprises_id;
+        $store->entreprise_id = $id;
         $store->message = $request->message;
-        $store->isAdmin = $request->isAdmin;
+        $store->user_id = Auth::user()->id;
         $store->save();
+        // dd($store);
+        return redirect()->back();
     }
 
     /**
@@ -50,9 +61,15 @@ class MessageController extends Controller
      * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function show(Message $message)
+    public function show($id)
     {
-        //
+
+        $entreprises =Entreprise::find($id);
+
+
+        // $messages = Message::where('entreprise_id', $id)->get();
+        //  dd($messages);
+        return view('backend.partials.messages', compact( 'entreprises'));
     }
 
     /**
