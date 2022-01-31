@@ -23,10 +23,10 @@ class DatabaseSeeder extends Seeder
         ]);
         Entreprise::factory(2)->create();
         $this->call([
-            StatutTacheSeeder::class,
+            // StatutTacheSeeder::class,
             TacheSeeder::class,
         ]);
         Message::factory(10)->create();
-     
+
     }
 }

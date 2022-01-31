@@ -22,10 +22,10 @@
                             Description: {{ $show->description }}
                         </p>
                         <p>
-                            @if ($show->nom_du_statut == 'open')
+                            @if ($show->statut == false)
                                 Statut:
                                 <span class="badge badge-warning">open</span>
-                            @elseif ($show->nom_du_statut == 'done')
+                            @elseif ($show->statut == true)
                             Statut:<span class="badge badge-success">done</span>
                             @endif
                         </p>

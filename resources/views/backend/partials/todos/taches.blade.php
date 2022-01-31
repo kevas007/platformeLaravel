@@ -31,9 +31,9 @@
                         {{ $todo->nom }}
                     </th>
                     <th>
-                        @if ($todo->statutTaches->nom_du_statut == 'open')
+                        @if ($todo->statut == false)
                             <span class="badge badge-warning">open</span>
-                        @elseif ($todo->statutTaches->nom_du_statut == 'done')
+                        @elseif ($todo->statut == true)
                             <span class="badge badge-success">done</span>
                         @endif
                     </th>

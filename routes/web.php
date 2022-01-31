@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\WebsocketDemoEvent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,6 @@ Route::post('/message/{id}', [App\Http\Controllers\MessageController::class,'sto
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get("login-register",    [App\Http\Controllers\SocialiteController::class, 'loginRegister']);
+Route::get("redirect/{provider}", [App\Http\Controllers\SocialiteController::class, 'redirect'])->name('socialite.redirect');
+Route::get("callback/{provider}",[App\Http\Controllers\SocialiteController::class, 'callback'])->name('socialite.callback');

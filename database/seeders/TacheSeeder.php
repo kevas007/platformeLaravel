@@ -23,29 +23,29 @@ class TacheSeeder extends Seeder
                     'entreprises_id' => 1,
                     'nom' => 'Tache 1',
                     'description' => 'Description de la tache 1',
-                    'statut_taches_id' => 1,
+                    'statut' => true,
                 ], [
                     'entreprises_id' => 1,
                     'nom' => 'Tache 2',
                     'description' => 'Description de la tache 2',
-                    'statut_taches_id' => 1,
+                    'statut' => 1,
                 ], [
                     'entreprises_id' => 2,
                     'nom' => 'Tache 3',
                     'description' => 'Description de la tache 3',
-                    'statut_taches_id' => 2,
+                    'statut' => true,
                 ],
                 [
                     'entreprises_id' =>2,
                     'nom_de_la_tache' => 'Tache 4',
                     'description_de_la_tache' => 'Description de la tache 3',
-                    'statut_taches_id' => 2,
+                    'statut' => false,
                 ],
                 [
                     'entreprises_id' => 1,
                     'nom_de_la_tache' => 'Tache 5',
                     'description_de_la_tache' => 'Description de la tache 3',
-                    'statut_taches_id' => 1,
+                    'statut' => true,
                 ]
             ]
         );

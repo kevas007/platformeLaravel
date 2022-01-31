@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\WebsocketDemoEvent;
 use App\Models\Message;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
@@ -46,13 +47,21 @@ class MessageController extends Controller
      */
     public function store(StoreMessageRequest $request, $id)
     {
+
         $store = new Message;
+        // dd($request->all());
         $store->entreprise_id = $id;
         $store->message = $request->message;
         $store->user_id = Auth::user()->id;
         $store->save();
         // dd($store);
-        return redirect()->back();
+        if(Auth::user()->id ==1){
+            broadcast(new WebsocketDemoEvent($store));
+            return redirect()->back();
+        }else{
+            broadcast(new WebsocketDemoEvent($store));
+            return response()->json(['success' => 'Message sent successfully.', 'data' => $store]);
+        }
     }
 
     /**
@@ -65,11 +74,10 @@ class MessageController extends Controller
     {
 
         $entreprises =Entreprise::find($id);
-
-
-        // $messages = Message::where('entreprise_id', $id)->get();
-        //  dd($messages);
-        return view('backend.partials.messages', compact( 'entreprises'));
+        $messages= $entreprises->messages()->orderBy('created_at')->get();
+        $user= Auth::user()->id;
+        // broadcast(new WebsocketDemoEvent())
+        return view('backend.partials.messages', compact( 'messages', 'entreprises', "user"));
     }
 
     /**
@@ -104,5 +112,20 @@ class MessageController extends Controller
     public function destroy(Message $message)
     {
         //
+    }
+    public function massages()
+    {
+        $messages =DB::table('entreprises')
+        ->join('messages', 'entreprises.id', '=', 'messages.entreprise_id')
+        ->where('entreprises.id', Auth::user()->entreprises->id)
+        ->orderBy('messages.created_at')
+        ->get();
+
+        // $messages= $entreprises->messages()->orderBy('created_at')->get();
+        // $messages = Message::where('entreprise_id', $id)->get();
+        //  dd($messages);
+        return response()->json([
+            'messages' => $messages,
+        ]);
     }
 }

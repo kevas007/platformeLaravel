@@ -6,6 +6,7 @@ use App\Models\Tache;
 use App\Http\Requests\StoreTacheRequest;
 use App\Http\Requests\UpdateTacheRequest;
 use App\Models\Entreprise;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TacheController extends Controller
@@ -28,7 +29,7 @@ class TacheController extends Controller
      */
     public function create()
     {
-        $entreprises= Entreprise::all();
+        $entreprises = Entreprise::all();
         return view('backend.partials.todos.todos', compact('entreprises'));
     }
 
@@ -54,7 +55,7 @@ class TacheController extends Controller
         $store->entreprises_id = $request->entreprises_id;
         $store->nom = $request->nom;
         $store->description = $request->description;
-        $store->statut_taches_id = 1;
+        $store->statut = false;
 
         $store->save();
         // dd($store);
@@ -69,7 +70,6 @@ class TacheController extends Controller
      */
     public function show()
     {
-
     }
 
     /**
@@ -80,7 +80,8 @@ class TacheController extends Controller
      */
     public function edit(Tache $tache)
     {
-        //
+        $tache = Tache::find($tache->id);
+        return response()->json($tache);
     }
 
     /**
@@ -90,9 +91,13 @@ class TacheController extends Controller
      * @param  \App\Models\Tache  $tache
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTacheRequest $request, Tache $tache)
+    public function update($id,UpdateTacheRequest $request)
     {
-        //
+
+        $update = Tache::find($id);
+        $update->statut = $request->statut;
+        $update->save();
+        return response()->json(['success' => 'Record is successfully updated']);
     }
 
     /**
@@ -105,15 +110,40 @@ class TacheController extends Controller
     {
         //
     }
-    public function shows($id){
+    public function shows($id)
+    {
         $taches = DB::table('taches')
-        ->join('entreprises', 'taches.entreprises_id', '=', 'entreprises.id')
-        ->join('statut_taches', 'taches.statut_taches_id', '=', 'statut_taches.id')
-        ->where ('entreprises.id', '=', $id)
-        ->orderBy('taches.nom', 'desc')
-        ->get();
+            ->join('entreprises', 'taches.entreprises_id', '=', 'entreprises.id')
+            ->where('entreprises.id', '=', $id)
+            ->orderBy('taches.nom', 'desc')
+            ->get();
+
 
 
         return view('backend.partials.todos.todoShow', compact('taches'));
+    }
+
+    public function showTache()
+    {
+        // dd(Auth::user()->id);
+        $taches = DB::table('taches')
+            ->join('entreprises', 'taches.entreprises_id', '=', 'entreprises.id')
+            ->select('taches.*')
+            ->where('entreprises.id', '=', Auth::user()->entreprises->id)
+            ->orderBy('taches.nom', 'desc')
+            ->get();
+            // dd($taches);
+        if (count($taches) > 0) {
+            return response()->json([
+                'taches' => $taches,
+                'message' => 'taches retrieved successfully'
+
+            ], 200);
+        } else {
+            return response()->json([
+                'taches' => $taches,
+                'message' => 'Aucune tache trouvée'
+            ], 200);
+        }
     }
 }

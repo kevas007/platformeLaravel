@@ -18,7 +18,7 @@ class CreateTachesTable extends Migration
             $table->foreignId('entreprises_id')->constrained();
             $table->string('nom');
             $table->string('description');
-            $table->foreignId('statut_taches_id')->constrained();
+            $table->boolean('statut')->default(false);
             $table->timestamps();
         });
     }
