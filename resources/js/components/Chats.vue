@@ -50,7 +50,7 @@
                                 <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 2px;"></div>
                             </div>
                         </div>
-                        <div class="publisher bt-1 border-light"> <img class="avatar avatar-xs"
+                        <div class="publisher bt-5 border-light"> <img class="avatar avatar-xs"
                                 src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="..."> <input
                                 class="publisher-input" v-model="message" type="text" id="text-form" placeholder="Write something">
                                 <button class="publisher-btn text-info" type="button" id="send" @click="sends"
@@ -67,7 +67,9 @@
 
 </template>
 <script>
-// import axios from 'axios'
+import axios from 'axios'
+ import Echo from "laravel-echo";
+
 export default {
        data() {
         return {
@@ -98,21 +100,22 @@ export default {
                 console.log(response.data)
                  this.message=""
                 });
-               
-
-         }
+         },
+  
     },
     mounted(){
-    
+
   window.Echo.channel('chat')
             .listen('WebsocketDemoEvent', (e) => {
               if(e.message.entreprise_id == this.entreprises.id  ){
  this.msg.push(e.message);
-                      console.log(e.message);
+                    //   console.log(e.message);
               }
-                  
+
                     //   console.log(this.messages);
             });
+    
+
     }
 }
 

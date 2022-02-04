@@ -31,3 +31,6 @@ Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logot
 Route::get('/message', [App\Http\Controllers\MessageController::class, 'massages'])->middleware('auth:sanctum');
 Route::post('/message/{id}', [App\Http\Controllers\MessageController::class, 'store'])->middleware('auth:sanctum');
 Route::put('/entreprise/{id}', [App\Http\Controllers\EntrepriseController::class, 'update'])->middleware('auth:sanctum');
+
+
+require base_path('routes/channels.php');

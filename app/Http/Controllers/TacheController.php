@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Todos;
 use App\Models\Tache;
 use App\Http\Requests\StoreTacheRequest;
 use App\Http\Requests\UpdateTacheRequest;
 use App\Models\Entreprise;
+use App\Notifications\TodosNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification as FacadesNotification;
+
 
 class TacheController extends Controller
 {
@@ -58,7 +63,10 @@ class TacheController extends Controller
         $store->statut = false;
 
         $store->save();
+        // $entreprise = Entreprise::find($id);
         // dd($store);
+        // Notification::send( Auth::user(),new TodosNotification($store));
+        broadcast(new Todos($store));
         return redirect()->route('home');
     }
 

@@ -7,8 +7,12 @@ use App\Models\Message;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
 use App\Models\Entreprise;
+use App\Models\User;
+use App\Notifications\InvoicePaid;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification as FacadesNotification;
 
 class MessageController extends Controller
 {
@@ -56,10 +60,14 @@ class MessageController extends Controller
         $store->save();
         // dd($store);
         if(Auth::user()->id ==1){
+            $entreprise = Entreprise::find($id);
             broadcast(new WebsocketDemoEvent($store));
+            FacadesNotification::send( $entreprise->users, new InvoicePaid($store));
             return redirect()->back();
         }else{
             broadcast(new WebsocketDemoEvent($store));
+            FacadesNotification::send(User::find(1), new InvoicePaid($store));
+
             return response()->json(['success' => 'Message sent successfully.', 'data' => $store]);
         }
     }
@@ -72,7 +80,7 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-
+        // dd(Auth::user());
         $entreprises =Entreprise::find($id);
         $messages= $entreprises->messages()->orderBy('created_at')->get();
         $user= Auth::user()->id;

@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Entreprise;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Notifications\NewUserNotification;
+use App\Notifications\WelcomeEmailNotification;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -73,7 +76,10 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
+        $user->notify(new WelcomeEmailNotification());
+        // event( new NewUserNotification(
+        //     $user
+        // ));
         Auth::login($user);
         // dd(Auth::user());
         return response()->json([

@@ -1,9 +1,9 @@
 <?php
-
+use App\Models\Entreprise;
 use App\Events\WebsocketDemoEvent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Broadcasting\BroadcastController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +18,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/admin/notification', function () {
+    $user = App\Models\User::find(1);
+    $test=$user->notifications;
+    $entreprise = Entreprise::all();
+
+    foreach ($user->unreadNotifications as $notification) {
+        $notification->markAsRead();
+    }
+
+return view('backend.partials.notification',compact('test', 'entreprise'));
+});
 
 Auth::routes();
 
@@ -31,6 +42,7 @@ Route::get('/show/{id}', [App\Http\Controllers\TacheController::class, 'shows'])
 Route::get('/message/show/{id}', [App\Http\Controllers\MessageController::class, 'show']);
 Route::post('/message/{id}', [App\Http\Controllers\MessageController::class,'store']);
 // Auth::routes();
+// Route::post("broadcasting/auth", [BroadcastController::class, 'authenticate']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get("login-register",    [App\Http\Controllers\SocialiteController::class, 'loginRegister']);
