@@ -11,10 +11,10 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Queue\SerializesModels;
 
-class Todos
+class Todos 
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
+    public $store;
     /**
      * Create a new event instance.
      *
@@ -35,14 +35,13 @@ class Todos
         return new PrivateChannel('todos');
     }
 
-    public function toMail($notifiable)
-    {
+    // public function toMail($notifiable)
+    // {
 
-        return (new MailMessage)
-                    ->line('Vous avez une tache')
-                    ->action('Notification Action', url('http://localhost:8081/todos'))
-                    ->line('Thank you for using our application!');
-
-}
+    //     return (new MailMessage)
+    //                 ->line('Vous avez une tache')
+    //                 ->action('Notification Action', url('http://localhost:8081/todos'))
+    //                 ->line('Thank you for using our application!');
+    // }
 
 }

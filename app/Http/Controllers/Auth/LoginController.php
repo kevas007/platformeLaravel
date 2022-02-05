@@ -64,22 +64,6 @@ class LoginController extends Controller
 
 
 
-    public function logot(Request $request)
-    {
-        // dd(auth()->user());
-        auth()->user()->currentAccessToken()->delete();
-        return response()->json(
-            [
-                'message' => 'Vous êtes déconnecté avec succès',
-                'status' => 200,
-            ],
-            200 ,
-            [
-                'Content-Type' => 'application/json;charset=UTF-8',
-                'Charset' => 'utf-8',
-            ],
-            JSON_UNESCAPED_UNICODE
-        );
-    }
+
 
 }

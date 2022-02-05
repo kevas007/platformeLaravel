@@ -7,29 +7,31 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class TodosNotification extends Notification
+class TodosNotification extends Notification implements ShouldQueue
 {
     use Queueable;
+    public $store;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($store)
     {
-        //
+        $this->store = $store;
+        // var_dump($this->store);
     }
-
     /**
      * Get the notification's delivery channels.
      *
      * @param  mixed  $notifiable
      * @return array
      */
+
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -40,11 +42,11 @@ class TodosNotification extends Notification
      */
     public function toMail($notifiable)
     {
-
         return (new MailMessage)
-                    ->line('Vous avez une tache')
-                    ->action('Notification Action', url('http://localhost:8081/todos'))
-                    ->line('Thank you for using our application!');
+        ->greeting('Hello,')
+        ->line('Welcome to Codelapan.')
+        ->action('Explore',  url('http://localhost:8081/todos'))
+        ->line('Thank you for using our application!');
     }
 
     /**
@@ -55,8 +57,11 @@ class TodosNotification extends Notification
      */
     public function toArray($notifiable)
     {
+
         return [
-            //
+            'tache' => $this->store->tache,
         ];
     }
+
+
 }

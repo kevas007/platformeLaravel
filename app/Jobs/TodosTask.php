@@ -13,7 +13,7 @@ use Illuminate\Queue\SerializesModels;
 class TodosTask implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
+public $store;
     /**
      * Create a new job instance.
      *

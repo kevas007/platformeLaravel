@@ -6,6 +6,7 @@ use App\Events\Todos;
 use App\Models\Tache;
 use App\Http\Requests\StoreTacheRequest;
 use App\Http\Requests\UpdateTacheRequest;
+use App\Jobs\TodosTask;
 use App\Models\Entreprise;
 use App\Notifications\TodosNotification;
 use Illuminate\Support\Facades\Auth;
@@ -63,10 +64,10 @@ class TacheController extends Controller
         $store->statut = false;
 
         $store->save();
-        // $entreprise = Entreprise::find($id);
+
         // dd($store);
-        // Notification::send( Auth::user(),new TodosNotification($store));
-        broadcast(new Todos($store));
+        //Notification::send( Auth::user(),new TodosNotification($store));
+        TodosTask::dispatch($store);
         return redirect()->route('home');
     }
 
