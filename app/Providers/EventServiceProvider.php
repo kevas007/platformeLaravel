@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Events\Todos;
 use App\Listeners\SendNewUserNotification;
 use App\Listeners\SendTodos;
+use App\Notifications\NewTodo;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -23,6 +24,7 @@ class EventServiceProvider extends ServiceProvider
             SendNewUserNotification::class,
             Notif::class,
             Todos::class,
+            NewTodo::class,
         ],
         Todos::class=> [
             SendTodos::class,

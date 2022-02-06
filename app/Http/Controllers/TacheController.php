@@ -65,9 +65,11 @@ class TacheController extends Controller
 
         $store->save();
 
+
         // dd($store);
         //Notification::send( Auth::user(),new TodosNotification($store));
-        TodosTask::dispatch($store);
+        // TodosTask::dispatch($store);
+        Todos::dispatch($store,  $request->entreprises_id);
         return redirect()->route('home');
     }
 

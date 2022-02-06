@@ -2,10 +2,12 @@
 
 namespace App\Listeners;
 
+use App\Events\Notif;
 use App\Events\Todos;
 use App\Mail\TodosMail;
 use App\Models\Entreprise;
 use App\Models\User;
+use App\Notifications\NewTodo;
 use App\Notifications\TodosNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -41,6 +43,8 @@ class SendTodos implements ShouldQueue
 
         Mail::to($user->email)->send(new TodosMail($event->store));
         // Notification::send( $user,new TodosNotification($event->store));
-        // var_dump($event->store);
+        // var_dump($user);
+     
     }
+
 }

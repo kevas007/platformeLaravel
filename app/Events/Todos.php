@@ -11,18 +11,20 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Queue\SerializesModels;
 
-class Todos 
+class Todos
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $store;
+    public $store, $userId;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($store)
+    public function __construct($store, $userId)
     {
         $this->store = $store;
+        $this->userId = $userId;
     }
 
     /**
@@ -32,8 +34,17 @@ class Todos
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('todos');
+        return new PrivateChannel('App.Models.User.' . $this->userId);
     }
+
+    public function broadcastWith()
+    {
+        return [
+            'type' => 'primary',
+            'message' => 'You have received a new tasks',
+        ];
+    }
+
 
     // public function toMail($notifiable)
     // {
@@ -43,5 +54,6 @@ class Todos
     //                 ->action('Notification Action', url('http://localhost:8081/todos'))
     //                 ->line('Thank you for using our application!');
     // }
+
 
 }

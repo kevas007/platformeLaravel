@@ -13,15 +13,16 @@ use Illuminate\Queue\SerializesModels;
 class TodosTask implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-public $store;
+public $store, $userId;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($store)
+    public function __construct($store, $userId)
     {
         $this->store = $store;
+        $this->userId = $userId;
     }
 
     /**
@@ -31,6 +32,6 @@ public $store;
      */
     public function handle()
     {
-        event(new Todos($this->store));
+        event(new Todos($this->store, $this->userId));
     }
 }
