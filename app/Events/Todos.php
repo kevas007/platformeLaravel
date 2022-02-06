@@ -11,7 +11,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Queue\SerializesModels;
 
-class Todos
+class Todos implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $store, $userId;
@@ -39,10 +39,10 @@ class Todos
 
     public function broadcastWith()
     {
-        return [
-            'type' => 'primary',
-            'message' => 'You have received a new tasks',
-        ];
+        // return [
+        //     'type' => 'primary',
+        //     'message' => 'You have received a new tasks',
+        // ];
     }
 
 

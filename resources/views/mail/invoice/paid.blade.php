@@ -5,6 +5,10 @@
 </p>
 The body of your message.
 
+<p>
+{{$description}}
+</p>
+
 @component('mail::button', ['url' => 'http://localhost:8081/todos'])
 Button Text
 @endcomponent

@@ -14,12 +14,15 @@ use Illuminate\Support\Facades\Broadcast;
 */
 
 
+// Broadcast::routes(['prefix'=>'api','middleware' => "auth:sanctum"]);
 
 
-// Broadcast::routes(['middleware' => 'web']);
+Broadcast::routes(['middleware' => 'web']);
 
 // Broadcast::routes(['prefix' =>"api", 'middleware' => "auth:sanctum"]);
 
+
+
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+    return true;
 });

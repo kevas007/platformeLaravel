@@ -23,19 +23,7 @@
 </head>
 
 <body>
-    @section('js')
 
-    <script src="{{ mix('js/app.js') }}">
-
-    </script>
-    <script>
-console.log('hello');
-        window.Echo.private('App.Models.User.1')
-        .listen('Todos', (e) => {
-            console.log(e);
-        });
-    </script>
-    @stop
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">

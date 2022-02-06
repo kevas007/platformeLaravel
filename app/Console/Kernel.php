@@ -17,9 +17,7 @@ class Kernel extends ConsoleKernel
     {
            // ->dailyAt('21:00');
         $schedule->command('message:daily')
-        ->everyMinute()
-        ->appendOutputTo('scheduler.log')
-        ;
+        ->dailyAt('16:18');
 
     }
 

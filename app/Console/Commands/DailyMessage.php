@@ -2,8 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\AllTodo;
+use App\Models\Entreprise;
 use Illuminate\Console\Command;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Mail;
 
 class DailyMessage extends Command
 {
@@ -38,6 +41,10 @@ class DailyMessage extends Command
      */
     public function handle()
     {
-        return 'test';
+        $entreprise = Entreprise::all();
+        foreach ($entreprise as $entreprise) {
+            $taches= $entreprise->taches()->where('statut', '=', '0')->get();
+            Mail::to( $entreprise->email_de_la_personne_de_contact)->send(new AllTodo($taches));
+        }
     }
 }

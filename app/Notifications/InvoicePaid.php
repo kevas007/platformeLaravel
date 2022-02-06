@@ -21,6 +21,7 @@ class InvoicePaid extends Notification implements ShouldBroadcast
     public function __construct($messages)
     {
         $this->messages = $messages;
+
     }
 
     /**
@@ -55,9 +56,11 @@ class InvoicePaid extends Notification implements ShouldBroadcast
      */
     public function toArray($notifiable)
     {
+
+        // var_dump($this->messages);
         return [
             'messages'=> $this->messages,
         ];
     }
-    
+
 }

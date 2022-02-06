@@ -53,7 +53,7 @@ class MessageController extends Controller
     {
 
         $store = new Message;
-        // dd($request->all());
+        // dd($id);
         $store->entreprise_id = $id;
         $store->message = $request->message;
         $store->user_id = Auth::user()->id;

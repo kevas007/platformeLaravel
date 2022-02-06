@@ -10,7 +10,7 @@ class Entreprise extends Model
     use HasFactory;
     public function taches()
     {
-        return $this->hasMany(Tache::class);
+        return $this->hasMany(Tache::class, 'entreprises_id');
     }
     public function messages()
     {
@@ -18,6 +18,6 @@ class Entreprise extends Model
     }
     public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'users_id');
     }
 }

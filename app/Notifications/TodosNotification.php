@@ -4,10 +4,12 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class TodosNotification extends Notification implements ShouldQueue
+class TodosNotification extends Notification implements ShouldQueue, ShouldBroadcast
 {
     use Queueable;
     public $store;
@@ -20,8 +22,10 @@ class TodosNotification extends Notification implements ShouldQueue
     public function __construct($store)
     {
         $this->store = $store;
-        // var_dump($this->store);
+
+
     }
+
     /**
      * Get the notification's delivery channels.
      *
@@ -31,7 +35,7 @@ class TodosNotification extends Notification implements ShouldQueue
 
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'broadcast'];
     }
 
     /**
@@ -59,8 +63,16 @@ class TodosNotification extends Notification implements ShouldQueue
     {
 
         return [
-            'tache' => $this->store->tache,
+            'tache' => $this->store,
         ];
+    }
+    public function toBroadcast($notifiable)
+    {
+
+        return new BroadcastMessage([
+            'type' => 'primary',
+            'message' => 'You have received a new tasks',
+        ]);
     }
 
 

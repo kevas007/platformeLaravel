@@ -28,8 +28,9 @@ Pusher.logToConsole = true;
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: process.env.MIX_PUSHER_APP_KEY,
+    key: 'local',
     wsHost: window.location.hostname,
+    authEndpoint: "broadcasting/auth",
     wsPort: 6001,
     wssPort: 6001,
     forceTLS: false,

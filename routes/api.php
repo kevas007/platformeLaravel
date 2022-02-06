@@ -33,6 +33,7 @@ Route::post('/entreprise', [App\Http\Controllers\EntrepriseController::class, 's
 Route::get('/message', [App\Http\Controllers\MessageController::class, 'massages'])->middleware('auth:sanctum');
 Route::post('/message/{id}', [App\Http\Controllers\MessageController::class, 'store'])->middleware('auth:sanctum');
 Route::put('/entreprise/{id}', [App\Http\Controllers\EntrepriseController::class, 'update'])->middleware('auth:sanctum');
+
 Route::middleware('auth:sanctum')->post('/out', function (Request $request)
 {
 
@@ -50,8 +51,8 @@ Route::middleware('auth:sanctum')->post('/out', function (Request $request)
         JSON_UNESCAPED_UNICODE
     );
 });
-Broadcast::routes(['middleware' => 'web']);
+// Broadcast::routes(['middleware' => 'web']);
 
-Broadcast::routes(['middleware' => "auth:sanctum"]);
+// Broadcast::routes(['middleware' => ['auth:sanctum']]);
 
-require base_path('routes/channels.php');
+// require base_path('routes/channels.php');

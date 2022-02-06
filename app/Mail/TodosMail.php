@@ -30,6 +30,16 @@ class TodosMail extends Mailable
     public function build()
     {
         return $this->from('example@example.com')
-        ->markdown('mail.invoice.paid');
+                    ->subject('Todos')
+                ->markdown('mail.invoice.paid')
+                ->with([
+                    'name' => $this->store->nom,
+                    'description' => $this->store->description,
+                    // 'date' => $this->store->date,
+                    // 'time' => $this->store->time,
+                    'status' => $this->store->status,
+                    // 'user' => $this->store->user,
+                    'entreprise' => $this->store->entreprises_id,
+                ]);
     }
 }

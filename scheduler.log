@@ -1,63 +1,168 @@
 
-   ErrorException 
+   Illuminate\Database\QueryException 
 
-  Object of class Illuminate\Notifications\Messages\MailMessage could not be converted to int
+  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'taches.entreprise_id' in 'where clause' (SQL: select * from `taches` where `taches`.`entreprise_id` = 1 and `taches`.`entreprise_id` is not null)
 
-  at C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Console\Command.php:136
-    132▕     protected function execute(InputInterface $input, OutputInterface $output)
-    133▕     {
-    134▕         $method = method_exists($this, 'handle') ? 'handle' : '__invoke';
-    135▕ 
-  ➜ 136▕         return (int) $this->laravel->call([$this, $method]);
-    137▕     }
-    138▕ 
-    139▕     /**
-    140▕      * Resolve the console command instance for the given command.
+  at C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:712
+    708▕         // If an exception occurs when attempting to run a query, we'll format the error
+    709▕         // message to include the bindings with SQL, which will make this exception a
+    710▕         // lot more helpful to the developer instead of just the database's errors.
+    711▕         catch (Exception $e) {
+  ➜ 712▕             throw new QueryException(
+    713▕                 $query, $this->prepareBindings($bindings), $e
+    714▕             );
+    715▕         }
+    716▕     }
 
-  1   C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Console\Command.php:136
-      Illuminate\Foundation\Bootstrap\HandleExceptions::handleError("Object of class Illuminate\Notifications\Messages\MailMessage could not be converted to int", "C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Console\Command.php", [Object(Symfony\Component\Console\Input\ArgvInput), Object(Illuminate\Console\OutputStyle), "handle"])
+  • A column was not found: You might have forgotten to run your migrations. You can run your migrations using `php artisan migrate`. 
+    https://laravel.com/docs/master/migrations#running-migrations
 
-  2   C:\laragon\www\plateformeLaravel\vendor\symfony\console\Command\Command.php:298
-      Illuminate\Console\Command::execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Illuminate\Console\OutputStyle))
+  1   C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:368
+      PDOException::("SQLSTATE[42S22]: Column not found: 1054 Unknown column 'taches.entreprise_id' in 'where clause'")
 
-   ErrorException 
+  2   C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:368
+      PDO::prepare("select * from `taches` where `taches`.`entreprise_id` = ? and `taches`.`entreprise_id` is not null")
 
-  Object of class Illuminate\Notifications\Messages\MailMessage could not be converted to int
+   Illuminate\Database\QueryException 
 
-  at C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Console\Command.php:136
-    132▕     protected function execute(InputInterface $input, OutputInterface $output)
-    133▕     {
-    134▕         $method = method_exists($this, 'handle') ? 'handle' : '__invoke';
-    135▕ 
-  ➜ 136▕         return (int) $this->laravel->call([$this, $method]);
-    137▕     }
-    138▕ 
-    139▕     /**
-    140▕      * Resolve the console command instance for the given command.
+  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'taches.entreprise_id' in 'where clause' (SQL: select * from `taches` where `taches`.`entreprise_id` = 1 and `taches`.`entreprise_id` is not null)
 
-  1   C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Console\Command.php:136
-      Illuminate\Foundation\Bootstrap\HandleExceptions::handleError("Object of class Illuminate\Notifications\Messages\MailMessage could not be converted to int", "C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Console\Command.php", [Object(Symfony\Component\Console\Input\ArgvInput), Object(Illuminate\Console\OutputStyle), "handle"])
+  at C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:712
+    708▕         // If an exception occurs when attempting to run a query, we'll format the error
+    709▕         // message to include the bindings with SQL, which will make this exception a
+    710▕         // lot more helpful to the developer instead of just the database's errors.
+    711▕         catch (Exception $e) {
+  ➜ 712▕             throw new QueryException(
+    713▕                 $query, $this->prepareBindings($bindings), $e
+    714▕             );
+    715▕         }
+    716▕     }
 
-  2   C:\laragon\www\plateformeLaravel\vendor\symfony\console\Command\Command.php:298
-      Illuminate\Console\Command::execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Illuminate\Console\OutputStyle))
+  • A column was not found: You might have forgotten to run your migrations. You can run your migrations using `php artisan migrate`. 
+    https://laravel.com/docs/master/migrations#running-migrations
 
-   ErrorException 
+  1   C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:368
+      PDOException::("SQLSTATE[42S22]: Column not found: 1054 Unknown column 'taches.entreprise_id' in 'where clause'")
 
-  Object of class Illuminate\Notifications\Messages\MailMessage could not be converted to int
+  2   C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:368
+      PDO::prepare("select * from `taches` where `taches`.`entreprise_id` = ? and `taches`.`entreprise_id` is not null")
 
-  at C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Console\Command.php:136
-    132▕     protected function execute(InputInterface $input, OutputInterface $output)
-    133▕     {
-    134▕         $method = method_exists($this, 'handle') ? 'handle' : '__invoke';
-    135▕ 
-  ➜ 136▕         return (int) $this->laravel->call([$this, $method]);
-    137▕     }
-    138▕ 
-    139▕     /**
-    140▕      * Resolve the console command instance for the given command.
+   Illuminate\Database\QueryException 
 
-  1   C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Console\Command.php:136
-      Illuminate\Foundation\Bootstrap\HandleExceptions::handleError("Object of class Illuminate\Notifications\Messages\MailMessage could not be converted to int", "C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Console\Command.php", [Object(Symfony\Component\Console\Input\ArgvInput), Object(Illuminate\Console\OutputStyle), "handle"])
+  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'taches.entreprise_id' in 'where clause' (SQL: select * from `taches` where `taches`.`entreprise_id` = 1 and `taches`.`entreprise_id` is not null)
 
-  2   C:\laragon\www\plateformeLaravel\vendor\symfony\console\Command\Command.php:298
-      Illuminate\Console\Command::execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Illuminate\Console\OutputStyle))
+  at C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:712
+    708▕         // If an exception occurs when attempting to run a query, we'll format the error
+    709▕         // message to include the bindings with SQL, which will make this exception a
+    710▕         // lot more helpful to the developer instead of just the database's errors.
+    711▕         catch (Exception $e) {
+  ➜ 712▕             throw new QueryException(
+    713▕                 $query, $this->prepareBindings($bindings), $e
+    714▕             );
+    715▕         }
+    716▕     }
+
+  • A column was not found: You might have forgotten to run your migrations. You can run your migrations using `php artisan migrate`. 
+    https://laravel.com/docs/master/migrations#running-migrations
+
+  1   C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:368
+      PDOException::("SQLSTATE[42S22]: Column not found: 1054 Unknown column 'taches.entreprise_id' in 'where clause'")
+
+  2   C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:368
+      PDO::prepare("select * from `taches` where `taches`.`entreprise_id` = ? and `taches`.`entreprise_id` is not null")
+
+   Illuminate\Database\QueryException 
+
+  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'taches.entreprise_id' in 'where clause' (SQL: select * from `taches` where `taches`.`entreprise_id` = 1 and `taches`.`entreprise_id` is not null)
+
+  at C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:712
+    708▕         // If an exception occurs when attempting to run a query, we'll format the error
+    709▕         // message to include the bindings with SQL, which will make this exception a
+    710▕         // lot more helpful to the developer instead of just the database's errors.
+    711▕         catch (Exception $e) {
+  ➜ 712▕             throw new QueryException(
+    713▕                 $query, $this->prepareBindings($bindings), $e
+    714▕             );
+    715▕         }
+    716▕     }
+
+  • A column was not found: You might have forgotten to run your migrations. You can run your migrations using `php artisan migrate`. 
+    https://laravel.com/docs/master/migrations#running-migrations
+
+  1   C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:368
+      PDOException::("SQLSTATE[42S22]: Column not found: 1054 Unknown column 'taches.entreprise_id' in 'where clause'")
+
+  2   C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:368
+      PDO::prepare("select * from `taches` where `taches`.`entreprise_id` = ? and `taches`.`entreprise_id` is not null")
+
+   Illuminate\Database\QueryException 
+
+  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'taches.entreprise_id' in 'where clause' (SQL: select * from `taches` where `taches`.`entreprise_id` = 1 and `taches`.`entreprise_id` is not null)
+
+  at C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:712
+    708▕         // If an exception occurs when attempting to run a query, we'll format the error
+    709▕         // message to include the bindings with SQL, which will make this exception a
+    710▕         // lot more helpful to the developer instead of just the database's errors.
+    711▕         catch (Exception $e) {
+  ➜ 712▕             throw new QueryException(
+    713▕                 $query, $this->prepareBindings($bindings), $e
+    714▕             );
+    715▕         }
+    716▕     }
+
+  • A column was not found: You might have forgotten to run your migrations. You can run your migrations using `php artisan migrate`. 
+    https://laravel.com/docs/master/migrations#running-migrations
+
+  1   C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:368
+      PDOException::("SQLSTATE[42S22]: Column not found: 1054 Unknown column 'taches.entreprise_id' in 'where clause'")
+
+  2   C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:368
+      PDO::prepare("select * from `taches` where `taches`.`entreprise_id` = ? and `taches`.`entreprise_id` is not null")
+
+   Illuminate\Database\QueryException 
+
+  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'taches.entreprise_id' in 'where clause' (SQL: select * from `taches` where `taches`.`entreprise_id` = 1 and `taches`.`entreprise_id` is not null)
+
+  at C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:712
+    708▕         // If an exception occurs when attempting to run a query, we'll format the error
+    709▕         // message to include the bindings with SQL, which will make this exception a
+    710▕         // lot more helpful to the developer instead of just the database's errors.
+    711▕         catch (Exception $e) {
+  ➜ 712▕             throw new QueryException(
+    713▕                 $query, $this->prepareBindings($bindings), $e
+    714▕             );
+    715▕         }
+    716▕     }
+
+  • A column was not found: You might have forgotten to run your migrations. You can run your migrations using `php artisan migrate`. 
+    https://laravel.com/docs/master/migrations#running-migrations
+
+  1   C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:368
+      PDOException::("SQLSTATE[42S22]: Column not found: 1054 Unknown column 'taches.entreprise_id' in 'where clause'")
+
+  2   C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:368
+      PDO::prepare("select * from `taches` where `taches`.`entreprise_id` = ? and `taches`.`entreprise_id` is not null")
+
+   Illuminate\Database\QueryException 
+
+  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'taches.entreprise_id' in 'where clause' (SQL: select * from `taches` where `taches`.`entreprise_id` = 1 and `taches`.`entreprise_id` is not null)
+
+  at C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:712
+    708▕         // If an exception occurs when attempting to run a query, we'll format the error
+    709▕         // message to include the bindings with SQL, which will make this exception a
+    710▕         // lot more helpful to the developer instead of just the database's errors.
+    711▕         catch (Exception $e) {
+  ➜ 712▕             throw new QueryException(
+    713▕                 $query, $this->prepareBindings($bindings), $e
+    714▕             );
+    715▕         }
+    716▕     }
+
+  • A column was not found: You might have forgotten to run your migrations. You can run your migrations using `php artisan migrate`. 
+    https://laravel.com/docs/master/migrations#running-migrations
+
+  1   C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:368
+      PDOException::("SQLSTATE[42S22]: Column not found: 1054 Unknown column 'taches.entreprise_id' in 'where clause'")
+
+  2   C:\laragon\www\plateformeLaravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:368
+      PDO::prepare("select * from `taches` where `taches`.`entreprise_id` = ? and `taches`.`entreprise_id` is not null")
