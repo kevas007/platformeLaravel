@@ -62,11 +62,9 @@ class MessageController extends Controller
         if(Auth::user()->id ==1){
             $entreprise = Entreprise::find($id);
             broadcast(new WebsocketDemoEvent($store));
-            FacadesNotification::send( $entreprise->users, new InvoicePaid($store));
             return redirect()->back();
         }else{
             broadcast(new WebsocketDemoEvent($store));
-            FacadesNotification::send(User::find(1), new InvoicePaid($store));
 
             return response()->json(['success' => 'Message sent successfully.', 'data' => $store]);
         }

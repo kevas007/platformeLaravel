@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Events\Todos;
+use App\Events\WebsocketDemoEvent;
+use App\Listeners\SendMessageNotification;
 use App\Listeners\SendNewUserNotification;
 use App\Listeners\SendTodos;
 use App\Notifications\NewTodo;
@@ -22,12 +24,15 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
             SendNewUserNotification::class,
-            Notif::class,
-            Todos::class,
-            NewTodo::class,
+            // Notif::class,
+            // Todos::class,
+            // NewTodo::class,
         ],
         Todos::class=> [
             SendTodos::class,
+        ],
+        WebsocketDemoEvent::class=> [
+            SendMessageNotification::class,
         ],
     ];
 

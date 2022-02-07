@@ -17,7 +17,7 @@ class Kernel extends ConsoleKernel
     {
            // ->dailyAt('21:00');
         $schedule->command('message:daily')
-        ->dailyAt('16:18');
+        ->dailyAt('21:00');
 
     }
 

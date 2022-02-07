@@ -6,7 +6,6 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <h5 class="card-title">Entreprise</h5>
-                            <a href="/tache/" class="btn btn-primary">+</a>
                         </div>
                         <p class="card-text">
                             {{-- <div class="row"> --}}

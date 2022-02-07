@@ -13,14 +13,6 @@
 
 @section('body')
 
-<script src="{{ mix('js/app.js') }}"></script>
-<script>
-console.log('hello');
-    window.Echo.private('App.Models.User.1')
-    .listen('Todos', (e) => {
-        console.log(e);
-    });
-</script>
     <div class="wrapper">
 
         {{-- Top Navbar --}}
